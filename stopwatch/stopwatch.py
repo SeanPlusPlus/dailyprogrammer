@@ -2,7 +2,6 @@
 
 from __future__ import print_function
 import time
-import signal
 import select
 import tty
 import termios
