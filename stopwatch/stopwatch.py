@@ -8,16 +8,20 @@
 # and it should write out to a file to be viewed later.
 
 import time
+import signal
+import sys
 
-def procedure():
-    time.sleep(1.0)
+def kill_stopwatch(signal, frame):
+    print 'Stopwatch Stopped'
+    sys.exit(0)
 
 def stopwatch():
-    start = time.clock()
-    for i in range(1,10):
-      print i
-      procedure()
-
+    signal.signal(signal.SIGINT, kill_stopwatch)
+    count = 0
+    while(True):
+        time.sleep(1.0)
+        count += 1
+        print count
 
 def main():
     stopwatch()
