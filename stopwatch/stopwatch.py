@@ -26,25 +26,29 @@ def main():
         # open file
         now = datetime.now().strftime('%Y-%m-%d-%M-%s')
         f = open('stopwatch-' + now,'w')
-        f.write('hi there\n')
-        f.close()
 
         # main loop
+        #
         # pressing the key "l" will make a new lap
         # pressing the excape key stops the stopwatch
         i = 1
         while 1:
             time.sleep(1.0)
-            print(i)
+            f.write(str(i) + '\n')
+            print(str(i))
             i += 1
 
             if isData():
                 c = sys.stdin.read(1)
                 if c == 'l':
                   print('lap')
+                  f.write('lap' + '\n')
                   i = 1
                 if c == chr(ascii.ESC):
                     break
+
+        # clos the file
+        f.close()
 
     finally:
         termios.tcsetattr(sys.stdin, termios.TCSADRAIN, old_settings)
