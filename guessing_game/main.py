@@ -1,25 +1,26 @@
 #!/usr/bin/env python
 
 from random import randint
+import timeit
+from math import factorial
 
 def bisect(start, end):
-   return int((start + end) / 2)
+    return int((start + end) / 2)
 
-def calcRecur(lower, upper):
-    question = 'Is the num [h]igher, [l]ower, or [e]xactly ' + str(bisect(lower, upper)) + ': '
-    direction = str(raw_input(question))
+def calcRecur(lower, upper, ans=None):
 
-    if direction == 'h':
-      calcRecur(bisect(lower, upper), upper)
+    mid = bisect(lower, upper)
+    if mid == ans:
+        print 'got it'
+        return
 
-    elif direction == 'l':
-      calcRecur(lower, bisect(lower, upper))
-
-    elif direction == 'e':
-      print 'got it!'
+    if mid < ans:
+        print mid
+        calcRecur(mid, upper, ans=ans)
 
     else:
-      print 'no dice'
+        print mid
+        calcRecur(lower, mid, ans=ans)
 
 def calcIter(lower, upper):
     mid = bisect(upper, lower)
@@ -45,11 +46,12 @@ def calcIter(lower, upper):
 
 def main():
     lower = 1
-    upper = 100
+    upper = factorial(100)
     randNumber = randint(lower, upper)
     print 'The Random Number Is: ' + str(randNumber) + '\n'
-    calcRecur(lower, upper)
-    calcIter(lower, upper)
+
+    calcRecur(lower, upper, ans=randNumber)
+    #calcIter(lower, upper)
 
 
 if __name__ == '__main__':
