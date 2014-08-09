@@ -1,14 +1,12 @@
 #!/usr/bin/env python
 
 import itertools
-from collections import defaultdict
 
 def main():
 
     with open('words.txt') as f:
         words_set = set(line.strip() for line in f)
 
-    words = defaultdict(lambda:None)
     li = [
       'mkeart',
       'sleewa',
@@ -22,6 +20,7 @@ def main():
       'iferkna'
     ]
 
+    words = dict()
     for word in li:
         perms = (''.join(i) for i in itertools.permutations(word, len(word)))
         try:
