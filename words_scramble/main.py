@@ -5,7 +5,6 @@ from collections import defaultdict
 
 def main():
 
-    words_set = set()
     with open('words.txt') as f:
         words_set = set(line.strip() for line in f)
 
