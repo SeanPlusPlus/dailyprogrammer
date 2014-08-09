@@ -22,23 +22,12 @@ def main():
       'iferkna'
     ]
 
-    def is_not_in_words_set(tu):
-        print ''.join(tu)
-        return not ''.join(tu) in words_set
-
     for word in li:
-        perms = itertools.permutations(word, len(word))
+        perms = (''.join(i) for i in itertools.permutations(word, len(word)))
         try:
-            it = itertools.dropwhile(is_not_in_words_set, perms)
-            words[word] = it.next()
+            words[word] = itertools.dropwhile(lambda x: not x in words_set, perms).next()
         except StopIteration:
-            raise
-
-        # for i in itertools.permutations(word, r=len(word)):
-        #     s = ''.join(i)
-        #     if s in words_set:
-        #         words[word] = s
-        #         break
+            print("Didn't find `%s' in words.txt" % word)
 
     print words
 
