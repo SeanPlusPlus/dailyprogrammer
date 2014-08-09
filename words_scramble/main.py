@@ -1,17 +1,14 @@
 #!/usr/bin/env python
 
 import itertools
-from collections import defaultdict
 
 def main():
 
-    words_set = set()
     with open('words.txt') as f:
         words_set = set(line.strip() for line in f)
 
-    words = defaultdict(lambda:None)
     li = [
-      'keart',
+      'mkeart',
       'sleewa',
       'edcudls',
       'iragoge',
@@ -23,25 +20,15 @@ def main():
       'iferkna'
     ]
 
-    def is_not_in_words_set(tu):
-        print ''.join(tu)
-        return not ''.join(tu) in words_set
-
-    for word in li:
-        perms = itertools.permutations(word, len(word))
+    def descramble(w):
+        perms = (''.join(i) for i in itertools.permutations(w, len(w)))
         try:
-            it = itertools.dropwhile(is_not_in_words_set, perms)
-            words[word] = it.next()
+            return itertools.dropwhile(lambda x: not x in words_set, perms).next()
         except StopIteration:
-            raise
+            return None
 
-        # for i in itertools.permutations(word, r=len(word)):
-        #     s = ''.join(i)
-        #     if s in words_set:
-        #         words[word] = s
-        #         break
-
-    print words
+    words = dict([(word, descramble(word)) for word in li])
+    print(words)
 
 if __name__ == '__main__':
     main()
