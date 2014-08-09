@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import itertools
+from collections import defaultdict
 
 def main():
 
@@ -8,20 +9,21 @@ def main():
     with open('words.txt') as f:
         words_set = set(line.strip() for line in f)
 
-    words = {
-      'keart': None,
-      'sleewa': None,
-      'edcudls': None,
-      'iragoge': None,
-      'usrlsle': None,
-      'nalraoci': None,
-      'nsdeuto': None,
-      'amrhat': None,
-      'inknsy': None,
-      'iferkna': None
-    }
+    words = defaultdict(lambda:None)
+    li = [
+      'keart',
+      'sleewa',
+      'edcudls',
+      'iragoge',
+      'usrlsle',
+      'nalraoci',
+      'nsdeuto',
+      'amrhat',
+      'inknsy',
+      'iferkna'
+    ]
 
-    for word in words:
+    for word in li:
         for i in itertools.permutations(word, r=len(word)):
             s = ''.join(i)
             if s in words_set:
