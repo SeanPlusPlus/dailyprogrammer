@@ -20,15 +20,15 @@ def main():
       'iferkna'
     ]
 
-    words = dict()
-    for word in li:
-        perms = (''.join(i) for i in itertools.permutations(word, len(word)))
+    def descramble(w):
+        perms = (''.join(i) for i in itertools.permutations(w, len(w)))
         try:
-            words[word] = itertools.dropwhile(lambda x: not x in words_set, perms).next()
+            return itertools.dropwhile(lambda x: not x in words_set, perms).next()
         except StopIteration:
-            print("Didn't find `%s' in words.txt" % word)
+            return None
 
-    print words
+    words = dict([(word, descramble(word)) for word in li])
+    print(words)
 
 if __name__ == '__main__':
     main()
