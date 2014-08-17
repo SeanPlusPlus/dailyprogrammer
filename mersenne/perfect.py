@@ -22,7 +22,6 @@ def main():
                 try:
                     prime = int(n)
                     primes.append(prime)
-
                 except(ValueError):
                     continue
 
