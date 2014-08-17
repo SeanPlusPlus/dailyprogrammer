@@ -11,7 +11,6 @@ def is_prime(n):
     return True
 
 def main():
-
     primes = []
     with open('primes.txt','r') as f:
         output = f.read().split('\n')
