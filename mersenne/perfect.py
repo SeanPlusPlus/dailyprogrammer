@@ -1,8 +1,7 @@
 #!/usr/bin/env python
+# find perfect numbers
 
 import math
-
-# find perfect numbers
 
 def is_prime(n):
     rooted = int(math.sqrt(n))
@@ -36,7 +35,6 @@ def main():
                 print '*** NOT PRIME  *** '
                 print 'exponent: ' + str(p)
                 print 'x: ' + str(x) + '\n'
-
 
 if __name__ == '__main__':
     main()
