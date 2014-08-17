@@ -1,13 +1,15 @@
 #!/usr/bin/env python
 
+import math
+
 # find perfect numbers
 
 def is_prime(n):
-    for i in range(2, n):
+    rooted = int(math.sqrt(n))
+    for i in range(2, rooted):
         if n % i == 0:
             return False
     return True
-
 
 def main():
 
@@ -24,16 +26,17 @@ def main():
                 except(ValueError):
                     continue
 
-    primes = [2,3,5,7]
-
     for p in primes:
-      x = (pow(2,p) - 1)
-      if is_prime(x):
-
-          print 'exponent: ' + str(p)
-
-          y = (pow(2,(p-1)))
-          print 'perfect:  ' + str(x * y)  + '\n'
+        if p < 59:
+            x = (pow(2,p) - 1)
+            if is_prime(x):
+                print 'exponent: ' + str(p)
+                y = (pow(2,(p-1)))
+                print 'perfect:  ' + str(x * y)  + '\n'
+            else:
+                print '*** NOT PRIME  *** '
+                print 'exponent: ' + str(p)
+                print 'x: ' + str(x) + '\n'
 
 
 if __name__ == '__main__':
